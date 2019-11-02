@@ -1,0 +1,48 @@
+
+openapi: 3.0.0
+info: 
+  description: A REST API that retrieves genes from the public Ensembl database.
+  version: 1.0.0
+  title: GENE-SEARCH-REST-API
+  contact: 
+    email: sobia.khalid.2126@gmail.com
+servers:
+  [url: /]
+tags:
+  [name: Gene Request,
+  description: A REST API for requesting and returning genes]
+paths: 
+  /searchgene: 
+    get: 
+      summary: Returns genes
+      parameters:
+      - in: query
+        name: name
+        schema: 
+          type: string
+        description: Display label of the gene
+        required: true
+      - in: query
+        name: species
+        schema: 
+          type: string
+        description: Species of the gene
+        required: false
+      tags:
+        [Gene Request]
+      responses: 
+        200: 
+          description: Get request successful
+        400:
+          description: Entered parameters that did not meet criteria
+    produces:
+      [application/yaml]
+    
+
+            
+          
+        
+      
+    
+  
+
