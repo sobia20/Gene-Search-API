@@ -1,7 +1,6 @@
 # Search Gene API
 
 This is a JSON REST API that retrieves gene information from the public Ensembl database, `ensembl_website_97`, when provided with parameters `name` and/or `species` of the gene.
-<br>The live application, deployed on Heroku and integrated with GitHub, can be accessed from https://gene-search-api.herokuapp.com/.
 
 ### URL
 Navigate to URL `/searchgene/?name=<value>&species=<value>` to run the API. Go to `/swagger` for its documentation through Swagger API.
