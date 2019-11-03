@@ -98,7 +98,7 @@ In the end, run
 ```
 Then, send a get request to the application,
 ```
-[root@localhost Gene-Search-API]# docker exec <container-id> bash -c 'curl -X GET '0.0.0.0/5000/searchgene/?name=brc'
+[root@localhost Gene-Search-API]# docker exec <container-id> bash -c 'curl -X GET '0.0.0.0/5000/searchgene/?name=brc''
 ```
 To run it from vagrant, use the port 80
 ```
