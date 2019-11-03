@@ -6,12 +6,12 @@ This is a JSON REST API that retrieves gene information from the public Ensembl 
 Navigate to URL `/searchgene/?name=<value>&species=<value>` to run the API. Go to `/swagger` for its documentation through Swagger API.
 
 ## Table of Contents
-* [Getting Started](#gettingstarted)
- * [Prerequisites] (#prepreqs)
- * [Run the Flask API] (#run)
-* [Swagger API Documentation](#swagger)
-* [Test Cases](#test)
-* [Deploying on Docker and Vagrant](#dockervagrant)
+* [Getting Started](#getting-started)
+   * [Prerequisites](#prerequisites)
+   * [Run the Flask API](#run-the-flask-api)
+* [Swagger API Documentation](#swagger-api-documentation)
+* [Test Cases](#test-cases)
+* [Deploying on Docker and Vagrant](#deploying-on-docker-and-vagrant)
    
 ## Getting Started
 To run this API you need to have python 3 installed.
@@ -37,17 +37,17 @@ Now, you can access the API by going to localhost:5000/
 ## Swagger API Documentation
 Searchgene API is documented using Swagger API. Please go to the localhost:5000/swagger url to see.
 <p align="center">
-<img src="./app/static/swagger.png?raw=true" width="200"/></p>
+<img src="https://imgur.com/zpydFm9" width="600"/></p>
 
-**GET Request:**
- Query String Parameters: 
- name: It is the name or similar to the name of the gene
+**GET Request:**<br>
+ Query String Parameters: <br>
+ name: It is the name or similar to the name of the gene <br>
  species: It is the full name of the species (Optional)
 
-*Success Response:*
-Code: 200
-Error Response:
-Code: 400 (Query parameters that do not specify requirements)
+*Success Response:*<br>
+Code: 200 <br>
+*Error Response:*<br>
+Code: 400 (Query parameters that do not specify requirements) <br>
 Code: 405 (Method not allowed)
 
 ## Test Cases
@@ -58,7 +58,8 @@ nose2 -v
 ```
 This will run all test cases defined in the app/tests/test_run.py file. It has 15 test cases and all pass. 
 <p align="center">
-<img src="./app/static/test_cases.png?raw=true" width="200"/></p>
+<img src="https://imgur.com/GvQT8ys" width="600"/></p>
+
 ## Deploying on Docker and Vagrant
 
 Install Vagrant and Virtualbox and clone this repository https://github.com/joanmarcriera/vagrant-file on your machine.
@@ -104,5 +105,4 @@ To run it from vagrant, use the port 80
 [root@localhost Gene-Search-API]#curl -X GET "0.0.0.0:80/searchgene/?name=tbpl2"
 ```
 On the external OS, go to http://localhost:8080 to access the API. 
-
 

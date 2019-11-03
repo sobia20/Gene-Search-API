@@ -24,5 +24,7 @@ COPY . /
 
 ENV FLASK_APP run.py
 
-CMD [ "flask", "run" ]
+RUN nose2 -v
+
+CMD [ "flask", "run", "--host", "0.0.0.0" ]
  

@@ -3,7 +3,7 @@ from flask import Flask
 from sqlalchemy import create_engine, MetaData
 
 app = Flask(__name__, instance_relative_config=True)
-print(app.config.from_pyfile('config.py'))
+app.config.from_pyfile('config.py')
 
 # swagger specific #
 SWAGGER_URL = '/swagger'
@@ -17,7 +17,7 @@ SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
 )
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 # end swagger specific #
-engine = create_engine('mysql://anonymous@ensembldb.ensembl.org:3306/ensembl_website_97')
+connection = 'mysql://'+app.config['USER']+'@'+app.config['HOST']+':'+app.config['PORT']+'/'+app.config['DATABASE']
+engine = create_engine(connection)
 metadata = MetaData(bind=engine)
-print(engine, metadata)
 from app import views
