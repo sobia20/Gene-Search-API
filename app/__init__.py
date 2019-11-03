@@ -17,7 +17,8 @@ SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
 )
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 # end swagger specific #
-connection = 'mysql://'+app.config['USER']+'@'+app.config['HOST']+':'+app.config['PORT']+'/'+app.config['DATABASE']
+connection = "mysql://{user}@{host}:{port}/{database}".format(user=app.config['USER'], host=app.config['HOST'],
+                                                              port=app.config['PORT'], database=app.config['DATABASE'])
 engine = create_engine(connection)
 metadata = MetaData(bind=engine)
 from app import views
