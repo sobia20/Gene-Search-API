@@ -1,73 +1,108 @@
 # Search Gene API
 
-This is a JSON REST API that retrieves gene information from the public Ensembl database, 'ensembl_website_97', when provided with parameters 'name' and 'species' of the gene.
-<Additional information about your API call. Try to use verbs that match both request type (fetching vs modifying) and plurality (one vs multiple).>
-
-## Demo with terminalizer
-https://github.com/faressoft/terminalizer
+This is a JSON REST API that retrieves gene information from the public Ensembl database, `ensembl_website_97`, when provided with parameters `name` and/or `species` of the gene.
 
 ### URL
-localhost:5000/searchgene
+Navigate to URL `/searchgene/?name=<value>&species=<value>` to run the API. Go to `/swagger` for its documentation through Swagger API.
 
 ## Table of Contents
-
+* [Getting Started](#gettingstarted)
+ * [Prerequisites] (#prepreqs)
+ * [Run the Flask API] (#run)
+* [Swagger API Documentation](#swagger)
+* [Test Cases](#test)
+* [Deploying on Docker and Vagrant](#dockervagrant)
+   
 ## Getting Started
-
 To run this API you need to have python 3 installed.
 To clone the repository on your local machine,
-
 ```
-git clone https://github.com/sobia20/EMBL-Python_Developer-Test
+git clone https://github.com/sobia20/Gene-Search-API
+cd Gene-Search-API
 ```
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+#### Prerequisites
 
-### Prerequisites
-
-What things you need to install the software and how to install them are mentioned in the requirements.txt file. 
-
+Install dependencies from the requirements.txt through pip,
 ```
 pip install -r requirements.txt
 ```
 
-Time out is 30 minutes so it will automatically stop querying if timeout is reached. 
-##Run the Flask API
+#### Run the Flask API
 ```
 flask run
 ```
-### Swagger API
-Searchgene API is documented using Swagger API. Please go to the localhost:5000/swagger url to see.
-This is just a get request.
+Now, you can access the API by going to localhost:5000/
 
-GET Request:
+## Swagger API Documentation
+Searchgene API is documented using Swagger API. Please go to the localhost:5000/swagger url to see.
+<p align="center">
+<img src="./app/static/swagger.png?raw=true" width="200"/></p>
+
+**GET Request:**
  Query String Parameters: 
  name: It is the name or similar to the name of the gene
  species: It is the full name of the species (Optional)
 
-Success Response:
+*Success Response:*
 Code: 200
 Error Response:
 Code: 400 (Query parameters that do not specify requirements)
 Code: 405 (Method not allowed)
-Sample Call:
-
-Notes:
-
-<This is where all uncertainties, commentary, discussion etc. can go. 
-I recommend timestamping and identifying oneself when leaving comments here.>
 
 ## Test Cases
 
-To run the test cases we have to run. There are 15 test cases and the API passes all. 
+To run the test cases, run this command in the root directory of the project,
 ```
 nose2 -v
 ```
+This will run all test cases defined in the app/tests/test_run.py file. It has 15 test cases and all pass. 
+<p align="center">
+<img src="./app/static/test_cases.png?raw=true" width="200"/></p>
+## Deploying on Docker and Vagrant
 
-## Deployed on Docker
+Install Vagrant and Virtualbox and clone this repository https://github.com/joanmarcriera/vagrant-file on your machine.
+Then run
+```
+$ cd vagrant-file
+$ vagrant up
+$ vagrant ssh
+[vagrant@localhost ~]$ sudo su -
+```
+To run this application inside vagrant, please do the following,
+```
+[root@localhost ~]# git clone https://github.com/sobia20/Gene-Search-API
+[root@localhost ~]# cd Gene-Search-API
+[root@localhost Gene-Search-API]# docker build -t super_api .
+```
+If you run into errors like
+ >"E: Release file for http://security.ubuntu.com/ubuntu/dists/bionic-security/InRelease is not valid yet (invalid for another 10h 7min 50s). Updates for this repository will not be applied."
+ 
+you need to change the System clock in Vagrant. You can do that by finding out the date in UTC and then running the command
+```
+sudo date "MMDDhhmmyyyy.ss"
+```
+where MM is month, DD is date, hh is hours, mm is minutes, yyyy is years and ss is seconds.
+The image contains the test cases as well, so you will notice them during the build, 
+>Ran 15 tests in 7.176s
+OK
 
-## How to run on Vagrant
-
-## Run from Heroku
-
+In the end, run
+```
+[root@localhost Gene-Search-API]# docker run -p 80:5000 --name myapp super_api
+```
+ To check if it's working on docker properly, first get the container id from 
+```
+[root@localhost Gene-Search-API]# docker ps
+```
+Then, send a get request to the application,
+```
+[root@localhost Gene-Search-API]# docker exec <container-id> bash -c 'curl -X GET '0.0.0.0/5000/searchgene/?name=brc'
+```
+To run it from vagrant, use the port 80
+```
+[root@localhost Gene-Search-API]#curl -X GET "0.0.0.0:80/searchgene/?name=tbpl2"
+```
+On the external OS, go to http://localhost:8080 to access the API. 
 
 
