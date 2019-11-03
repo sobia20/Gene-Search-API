@@ -33,22 +33,23 @@ pip install -r requirements.txt
 ```
 flask run
 ```
-Now, you can access the API by going to localhost:5000/
+Now, you can access the API by going to http://localhost:5000/
 
 ## Swagger API Documentation
-Searchgene API is documented using Swagger API. Please go to the localhost:5000/swagger url to see.
+Searchgene API is documented using Swagger API. Please go to the http://localhost:5000/swagger url to see.
 
-[Imgur](https://i.imgur.com/zpydFm9.png)
+![Swagger_URL](https://i.imgur.com/zpydFm9.png)
 
 **GET Request:**<br>
  Query String Parameters: <br>
  name: It is the name or similar to the name of the gene <br>
  species: It is the full name of the species (Optional)
 
-*Success Response:*<br>
+*Success Response:*
 Code: 200 <br>
+
 *Error Response:*<br>
-Code: 400 (Query parameters that do not specify requirements) <br>
+Code: 400 (Query parameters that do not satisfy requirements) <br>
 Code: 405 (Method not allowed)
 
 ## Test Cases
@@ -58,51 +59,22 @@ To run the test cases, run this command in the root directory of the project,
 nose2 -v
 ```
 This will run all test cases defined in the app/tests/test_run.py file. It has 15 test cases and all pass. 
->'test_correct_name_and_wrong_species (test_run.TestMyGeneSearch)<br>
-Tests if name query strings is correct and species query string is wrong ... ok  <br>
->test_delete (test_run.TestMyGeneSearch)<br>
-Tests if method is delete ... ok      <br>
-test_name (test_run.TestMyGeneSearch) <br>
-Tests if only name is given ... ok    <br>
-test_name_and_species (test_run.TestMyGeneSearch)<br>
-Tests the name and species ... ok    <br>
-test_name_double (test_run.TestMyGeneSearch) <br>
-Only the first parameter will be considered if double name parameters are entered ... ok<br>
-test_name_less_than_three (test_run.TestMyGeneSearch)  <br> 
-Tests if the number of letters are less than three in name ... ok     <br>
-test_no_matches (test_run.TestMyGeneSearch)  <br>
-Tests if there are no matches found in the database ... ok     <br>
-test_no_name_and_species (test_run.TestMyGeneSearch)    <br>
-Tests if no query strings are given ... ok   <br>
-test_patch (test_run.TestMyGeneSearch)<br>
-Only the first parameter will be considered if double name parameters are entered ... ok<br>
-test_post (test_run.TestMyGeneSearch) <br>
-Tests if method is post ... ok <br>
-test_put (test_run.TestMyGeneSearch)  <br>
-Tests if method is put ... ok  <br>
-test_species (test_run.TestMyGeneSearch)     <br>
-Tests if only species is given ... ok <br>
-test_wrong_name (test_run.TestMyGeneSearch)  <br>
-Tests if name query string is wrong only ... ok  <br>
-test_wrong_name_and_correct_species(test_run.TestMyGeneSearch)<br>
-Tests if name query string is wrong and species is correct ...ok <br>
-test_wrong_name_and_species (test_run.TestMyGeneSearch) <br>
-Tests if name and species query strings are wrong ... ok  <br>
-> ----------------------------------------------------------------------
+>...
 >Ran 15 tests in 5.853s    <br>
->OK '
+>OK 
 
 ## Deploying on Docker and Vagrant
 
-Install Vagrant and Virtualbox and clone this repository https://github.com/joanmarcriera/vagrant-file on your machine.
+Install Vagrant and Virtualbox on your machine.
 Then run
 ```
+$ git clone https://github.com/joanmarcriera/vagrant-file 
 $ cd vagrant-file
 $ vagrant up
 $ vagrant ssh
 [vagrant@localhost ~]$ sudo su -
 ```
-To run this application inside vagrant, please do the following,
+To run this application inside vagrant, do the following,
 ```
 [root@localhost ~]# git clone https://github.com/sobia20/Gene-Search-API
 [root@localhost ~]# cd Gene-Search-API
@@ -116,9 +88,6 @@ you need to change the System clock in Vagrant. You can do that by finding out t
 sudo date "MMDDhhmmyyyy.ss"
 ```
 where MM is month, DD is date, hh is hours, mm is minutes, yyyy is years and ss is seconds.
-The image contains the test cases as well, so you will notice them during the build, 
->Ran 15 tests in 7.176s
-OK
 
 In the end, run
 ```
