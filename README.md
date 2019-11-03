@@ -1,6 +1,7 @@
 # Search Gene API
 
 This is a JSON REST API that retrieves gene information from the public Ensembl database, `ensembl_website_97`, when provided with parameters `name` and/or `species` of the gene.
+<br>The live application, deployed on Heroku and integrated with GitHub, can be accessed from https://gene-search-api.herokuapp.com/.
 
 ### URL
 Navigate to URL `/searchgene/?name=<value>&species=<value>` to run the API. Go to `/swagger` for its documentation through Swagger API.
@@ -12,7 +13,7 @@ Navigate to URL `/searchgene/?name=<value>&species=<value>` to run the API. Go t
 * [Swagger API Documentation](#swagger-api-documentation)
 * [Test Cases](#test-cases)
 * [Deploying on Docker and Vagrant](#deploying-on-docker-and-vagrant)
-   
+
 ## Getting Started
 To run this API you need to have python 3 installed.
 To clone the repository on your local machine,
@@ -36,8 +37,8 @@ Now, you can access the API by going to localhost:5000/
 
 ## Swagger API Documentation
 Searchgene API is documented using Swagger API. Please go to the localhost:5000/swagger url to see.
-<p align="center">
-<img src="https://imgur.com/zpydFm9" width="600"/></p>
+
+[Imgur](https://i.imgur.com/zpydFm9.png)
 
 **GET Request:**<br>
  Query String Parameters: <br>
@@ -57,8 +58,39 @@ To run the test cases, run this command in the root directory of the project,
 nose2 -v
 ```
 This will run all test cases defined in the app/tests/test_run.py file. It has 15 test cases and all pass. 
-<p align="center">
-<img src="https://imgur.com/GvQT8ys" width="600"/></p>
+>'test_correct_name_and_wrong_species (test_run.TestMyGeneSearch)<br>
+Tests if name query strings is correct and species query string is wrong ... ok  <br>
+>test_delete (test_run.TestMyGeneSearch)<br>
+Tests if method is delete ... ok      <br>
+test_name (test_run.TestMyGeneSearch) <br>
+Tests if only name is given ... ok    <br>
+test_name_and_species (test_run.TestMyGeneSearch)<br>
+Tests the name and species ... ok    <br>
+test_name_double (test_run.TestMyGeneSearch) <br>
+Only the first parameter will be considered if double name parameters are entered ... ok<br>
+test_name_less_than_three (test_run.TestMyGeneSearch)  <br> 
+Tests if the number of letters are less than three in name ... ok     <br>
+test_no_matches (test_run.TestMyGeneSearch)  <br>
+Tests if there are no matches found in the database ... ok     <br>
+test_no_name_and_species (test_run.TestMyGeneSearch)    <br>
+Tests if no query strings are given ... ok   <br>
+test_patch (test_run.TestMyGeneSearch)<br>
+Only the first parameter will be considered if double name parameters are entered ... ok<br>
+test_post (test_run.TestMyGeneSearch) <br>
+Tests if method is post ... ok <br>
+test_put (test_run.TestMyGeneSearch)  <br>
+Tests if method is put ... ok  <br>
+test_species (test_run.TestMyGeneSearch)     <br>
+Tests if only species is given ... ok <br>
+test_wrong_name (test_run.TestMyGeneSearch)  <br>
+Tests if name query string is wrong only ... ok  <br>
+test_wrong_name_and_correct_species(test_run.TestMyGeneSearch)<br>
+Tests if name query string is wrong and species is correct ...ok <br>
+test_wrong_name_and_species (test_run.TestMyGeneSearch) <br>
+Tests if name and species query strings are wrong ... ok  <br>
+> ----------------------------------------------------------------------
+>Ran 15 tests in 5.853s    <br>
+>OK '
 
 ## Deploying on Docker and Vagrant
 
@@ -106,3 +138,5 @@ To run it from vagrant, use the port 80
 ```
 On the external OS, go to http://localhost:8080 to access the API. 
 
+
+ 

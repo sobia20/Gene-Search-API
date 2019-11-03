@@ -7,7 +7,7 @@ import json
 def index():
     """Displays the URL for navigation"""
     return Response(
-        "Please type searchgene/?name=<value>&species=<value> to search for genes and to /swagger to see documentation",
+        "Go to searchgene/?name=<value>&species=<value> to search for genes and /swagger for see documentation",
         200)
 
 
